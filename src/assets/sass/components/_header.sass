@@ -1,0 +1,39 @@
+header
+    height: 110vh
+    background-image: url(../img/header-bgr.jpg)
+    background-size: cover
+    background-position: center
+    position: relative
+
+    &:after
+        content: ''
+        position: absolute
+        right: 0
+        bottom: 0
+        left: 0
+        height: 30vh
+        background: linear-gradient(to top, rgba($body ,1) 0%,rgba($body,0) 100%)
+
+    &:before
+        content: ''
+        position: absolute
+        top: 0
+        right: 0
+        bottom: 0
+        left: 0
+        background-color: $body
+        opacity: .5
+
+    .header__logo
+        position: absolute
+        top: 45%
+        left: 50%
+        transform: translate3d(-50%, -50%, 0)
+        font-size: 100px
+
+    .header__arrow
+        position: absolute
+        left: 50%
+        bottom: 20vh
+        transform: translateX(-50%)
+        font-size: 40px
