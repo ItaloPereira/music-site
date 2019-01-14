@@ -1,3 +1,37 @@
 .events
     .swiper-events-container
         margin-top: 75px
+        overflow: hidden
+
+        .swiper-slide
+            background-size: contain
+            background-position: center
+            height: 420px
+            border-radius: 3px
+
+            .event-desc
+                position: absolute
+                right: 0
+                left: 0
+                bottom: 0
+                height: 150px
+                display: flex
+                flex-direction: column
+                align-items: center
+                justify-content: center
+                background: linear-gradient(to top, rgba($body,1) 0%,rgba($body, .6) 70%,rgba($body,0) 100%)
+                overflow: hidden
+                transition: .3s
+
+                &__name
+                    font-size: 30px
+
+                &__date
+                    font-size: 22px
+
+                &__city
+                    font-size: 15px
+
+            &:hover
+                .event-desc
+                    bottom: -150px
