@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "if [ -d  ../.dist ]; then rm -Rf ../.dist; fi; node_modules/.bin/webpack -d --progress --colors --config webpack.config.build.js; node .imageOptim.js",
+    "build": "if [ -d  ./dist ]; then rm -Rf ./dist; fi; node_modules/.bin/webpack -d --progress --colors --config webpack.config.build.js; node .imageOptim.js",
     "dev": "node_modules/.bin/webpack -w --progress --colors --config webpack.config.dev.js"
   },
   "author": "",

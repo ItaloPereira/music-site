@@ -5,13 +5,16 @@
         .swiper-events-container
             margin-top: 75px
             overflow: hidden
+            
+            @include sm-screen
+                margin-top: 40px
 
             .swiper-slide
                 border-radius: 3px
                 overflow: hidden
 
                 .outer-div
-                    background-size: contain
+                    background-size: cover
                     background-position: center
                     height: 420px
                     transition: .3s
@@ -54,6 +57,9 @@
             outline: none
             font-size: 50px
             background: none
+
+            @include sm-screen
+                display: none
 
         .swiper-button-prev
             left: -80px

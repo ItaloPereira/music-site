@@ -39,7 +39,7 @@ class Events {
         let slides = '';
 
         events.map(event => {
-            slides += `<a href="${event.link}" class="swiper-slide">
+            slides += `<a href="${event.link}" ${event.link != 'javascript:;' ? 'target="_blank"' : ''} class="swiper-slide">
                             <div class="outer-div" style="background-image: url(img/${event.image});">
                                 <div class="event-desc">
                                     <h3 class="event-desc__name">${event.name}</h3>
@@ -56,13 +56,20 @@ class Events {
     createSlider () {
         this.slider = new Swiper (this.$swiper, {
             slidesPerView: 3,
-            spaceBetween: 55,
+            spaceBetween: 100,
             allowTouchMove: false,
 
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+
+            breakpoints: {
+                768: {
+                    slidesPerView: 1,
+                    allowTouchMove: true
+                }
+            }
         })
 
     }

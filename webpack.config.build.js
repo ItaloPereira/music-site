@@ -43,7 +43,7 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, '../.dist/js')
+		path: path.resolve(__dirname, './dist/js')
 	},
 	resolve: {
     alias: {}
@@ -65,7 +65,7 @@ module.exports = {
 				loader: ExtractTextPlugin.extract('css!postcss!sass')
 			},
 			{
-				test: /\.(gif|png|jpg)(\?[a-z0-9]+)?$/,
+				test: /\.(gif|png|jpg|ico)(\?[a-z0-9]+)?$/,
 				loader: 'file-loader?name=../img/[name].[ext]'
 			},
 			{

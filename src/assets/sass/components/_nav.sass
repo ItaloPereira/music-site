@@ -7,10 +7,17 @@ nav
     height: 100px
     z-index: 100
 
+    @include sm-screen
+        height: 70px
+        background-color: rgba($body, .3) 
+
     .page-wrapper
         display: flex
         align-items: center
         justify-content: space-between
+
+        @include sm-screen
+            justify-content: center
 
         a
             transition: .25s

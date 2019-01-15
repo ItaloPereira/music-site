@@ -5,6 +5,9 @@ header
     background-position: center
     position: relative
 
+    @include sm-screen
+        height: 100vh
+
     &:after
         content: ''
         position: absolute
@@ -13,6 +16,9 @@ header
         left: 0
         height: 30vh
         background: linear-gradient(to top, rgba($body ,1) 0%,rgba($body,0) 100%)
+
+        @include sm-screen
+            height: 20vh
 
     &:before
         content: ''
@@ -30,6 +36,15 @@ header
         left: 50%
         transform: translate3d(-50%, -50%, 0)
         font-size: 100px
+        text-indent: -99999px
+        background-image: url(../img/mustaj-logo.png)
+        background-size: contain
+        background-repeat: no-repeat
+        width: 616px
+        height: 99px
+
+        @include sm-screen
+            width: 70%
 
     .header__arrow
         position: absolute
