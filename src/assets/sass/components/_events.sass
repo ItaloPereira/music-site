@@ -49,9 +49,15 @@
                 &:hover
                     .outer-div
                         transform: scale(1.1)
+            
+                        @include sm-screen
+                            transform: scale(1)
 
                     .event-desc
                         bottom: -150px
+            
+                        @include sm-screen
+                            bottom: 0
 
         .swiper-button-prev, .swiper-button-next
             outline: none

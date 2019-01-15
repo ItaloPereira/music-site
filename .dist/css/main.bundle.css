@@ -747,8 +747,14 @@ section {
             color: #ccc; }
       .events .box-overflow .swiper-events-container .swiper-slide:hover .outer-div {
         transform: scale(1.1); }
+        @media (max-width: 768px) {
+          .events .box-overflow .swiper-events-container .swiper-slide:hover .outer-div {
+            transform: scale(1); } }
       .events .box-overflow .swiper-events-container .swiper-slide:hover .event-desc {
         bottom: -150px; }
+        @media (max-width: 768px) {
+          .events .box-overflow .swiper-events-container .swiper-slide:hover .event-desc {
+            bottom: 0; } }
   .events .box-overflow .swiper-button-prev, .events .box-overflow .swiper-button-next {
     outline: none;
     font-size: 50px;
