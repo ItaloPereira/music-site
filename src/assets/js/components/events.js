@@ -19,10 +19,14 @@ class Events {
     createContainer () {
         this.template = `<div class="page-wrapper">
                             <h2>PRÓXIMOS EVENTOS</h2>
-                            <div class="swiper-events-container">
-                                <div class="swiper-wrapper">
-                                    ${this.getSlides()}
+                            <div class="box-overflow">
+                                <div class="swiper-events-container">
+                                    <div class="swiper-wrapper">
+                                        ${this.getSlides()}
+                                    </div>
                                 </div>
+                                <div class="swiper-button-prev icon-chevron-down"></div>
+                                <div class="swiper-button-next icon-chevron-down"></div>
                             </div>
                          </div>`;
 
@@ -35,11 +39,13 @@ class Events {
         let slides = '';
 
         events.map(event => {
-            slides += `<a href="${event.link}" style="background-image: url(img/${event.image});" class="swiper-slide">
-                            <div class="event-desc">
-                                <h3 class="event-desc__name">${event.name}</h3>
-                                <span class="event-desc__date">${event.date}</span>
-                                <span class="event-desc__city">${event.city}</span>
+            slides += `<a href="${event.link}" class="swiper-slide">
+                            <div class="outer-div" style="background-image: url(img/${event.image});">
+                                <div class="event-desc">
+                                    <h3 class="event-desc__name">${event.name}</h3>
+                                    <span class="event-desc__date">${event.date}</span>
+                                    <span class="event-desc__city">${event.city}</span>
+                                </div>
                             </div>
                        </a>`;
         });
@@ -50,7 +56,13 @@ class Events {
     createSlider () {
         this.slider = new Swiper (this.$swiper, {
             slidesPerView: 3,
-            spaceBetween: 55
+            spaceBetween: 55,
+            allowTouchMove: false,
+
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
         })
 
     }

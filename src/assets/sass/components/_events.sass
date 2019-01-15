@@ -1,37 +1,67 @@
 .events
-    .swiper-events-container
-        margin-top: 75px
-        overflow: hidden
+    .box-overflow
+        position: relative
 
-        .swiper-slide
-            background-size: contain
-            background-position: center
-            height: 420px
-            border-radius: 3px
+        .swiper-events-container
+            margin-top: 75px
+            overflow: hidden
 
-            .event-desc
-                position: absolute
-                right: 0
-                left: 0
-                bottom: 0
-                height: 150px
-                display: flex
-                flex-direction: column
-                align-items: center
-                justify-content: center
-                background: linear-gradient(to top, rgba($body,1) 0%,rgba($body, .6) 70%,rgba($body,0) 100%)
+            .swiper-slide
+                border-radius: 3px
                 overflow: hidden
-                transition: .3s
 
-                &__name
-                    font-size: 30px
+                .outer-div
+                    background-size: contain
+                    background-position: center
+                    height: 420px
+                    transition: .3s
 
-                &__date
-                    font-size: 22px
+                    .event-desc
+                        position: absolute
+                        right: 0
+                        left: 0
+                        bottom: 0
+                        height: 150px
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+                        justify-content: center
+                        background: linear-gradient(to top, rgba($body,1) 0%,rgba($body, .6) 70%,rgba($body,0) 100%)
+                        overflow: hidden
+                        transition: .3s
 
-                &__city
-                    font-size: 15px
+                        &__name
+                            font-size: 30px
+                            margin-bottom: 5px
 
-            &:hover
-                .event-desc
-                    bottom: -150px
+                        &__date
+                            font-size: 22px
+                            color: #ccc
+                            margin-bottom: 5px
+
+                        &__city
+                            font-size: 15px
+                            color: #ccc
+
+                &:hover
+                    .outer-div
+                        transform: scale(1.1)
+
+                    .event-desc
+                        bottom: -150px
+
+        .swiper-button-prev, .swiper-button-next
+            outline: none
+            font-size: 50px
+            background: none
+
+        .swiper-button-prev
+            left: -80px
+            transform: rotate(90deg)
+
+        .swiper-button-next
+            right: -80px
+            transform: rotate(-90deg)
+
+        .swiper-button-disabled
+            display: none
