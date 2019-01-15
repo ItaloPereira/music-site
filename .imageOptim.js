@@ -3,7 +3,7 @@ var sharp = require('sharp');
 var fs = require('fs');
 var _path = require('path');
 
-find.file(/\.png$/,'../.dist/', function(list) {
+find.file(/\.png$/,'./.dist/', function(list) {
 	list.map(item => {
 		var _file = _path.parse(item);
 		var path= _file.dir + '/';
