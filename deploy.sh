@@ -1,4 +1,5 @@
 git branch -D master &&
+git push &&
 git checkout -b master &&
 npm install && npm run build &&
 rm -rf .dist &&
