@@ -18,7 +18,7 @@ class Events {
     
     createContainer () {
         this.template = `<div class="page-wrapper">
-                            <h2>PRÓXIMOS EVENTOS</h2>
+                            <h2>PRÓXIMOS EVENTOSs</h2>
                             <div class="box-overflow">
                                 <div class="swiper-events-container">
                                     <div class="swiper-wrapper">
