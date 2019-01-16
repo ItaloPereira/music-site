@@ -40,8 +40,9 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ 0:
 /***/ (function(module, exports, __webpack_require__) {
 
 	// Sass
@@ -52,28 +53,15 @@
 
 
 /***/ }),
-/* 1 */
+
+/***/ 1:
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+
+/***/ 17:
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -86,7 +74,11 @@
 
 	var _events2 = _interopRequireDefault(_events);
 
-	var _swiper = __webpack_require__(21);
+	var _media = __webpack_require__(21);
+
+	var _media2 = _interopRequireDefault(_media);
+
+	var _swiper = __webpack_require__(29);
 
 	var _swiper2 = _interopRequireDefault(_swiper);
 
@@ -102,13 +94,15 @@
 	window.App = {
 		init: function init() {
 			this.events = new _events2.default();
+			this.media = new _media2.default();
 		}
 	};
 
 	App.init();
 
 /***/ }),
-/* 18 */
+
+/***/ 18:
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10478,7 +10472,8 @@
 
 
 /***/ }),
-/* 19 */
+
+/***/ 19:
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10567,7 +10562,8 @@
 	exports.default = Events;
 
 /***/ }),
-/* 20 */
+
+/***/ 20:
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10598,7 +10594,93 @@
 	exports.default = Events;
 
 /***/ }),
-/* 21 */
+
+/***/ 21:
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	// import data
+	// import events from '../data/events';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Media = function () {
+	    function Media() {
+
+	        // if (events.length < 3) return false;
+
+	        // this.$container = $('.events');
+
+	        // this.createContainer();
+	        // this.createSlider();
+	        // this.$container.show();
+
+	        // this.slider.update();
+
+	        _classCallCheck(this, Media);
+	    }
+
+	    _createClass(Media, [{
+	        key: 'createContainer',
+	        value: function createContainer() {
+	            this.template = '<div class="page-wrapper">\n                            <h2>PR\xD3XIMOS EVENTOS</h2>\n                            <div class="box-overflow">\n                                <div class="swiper-events-container">\n                                    <div class="swiper-wrapper">\n                                        ' + this.getSlides() + '\n                                    </div>\n                                </div>\n                                <div class="swiper-button-prev icon-chevron-down"></div>\n                                <div class="swiper-button-next icon-chevron-down"></div>\n                            </div>\n                         </div>';
+
+	            this.$container.html(this.template);
+
+	            this.$swiper = $('.swiper-events-container', this.$container);
+	        }
+	    }, {
+	        key: 'getSlides',
+	        value: function getSlides() {
+	            var slides = '';
+
+	            events.map(function (event) {
+	                slides += '<a href="' + event.link + '" ' + (event.link != 'javascript:;' ? 'target="_blank"' : '') + ' class="swiper-slide">\n                            <div class="outer-div" style="background-image: url(img/' + event.image + ');">\n                                <div class="event-desc">\n                                    <h3 class="event-desc__name">' + event.name + '</h3>\n                                    <span class="event-desc__date">' + event.date + '</span>\n                                    <span class="event-desc__city">' + event.city + '</span>\n                                </div>\n                            </div>\n                       </a>';
+	            });
+
+	            return slides;
+	        }
+	    }, {
+	        key: 'createSlider',
+	        value: function createSlider() {
+	            this.slider = new Swiper(this.$swiper, {
+	                slidesPerView: 3,
+	                spaceBetween: 100,
+	                allowTouchMove: false,
+
+	                navigation: {
+	                    nextEl: '.swiper-button-next',
+	                    prevEl: '.swiper-button-prev'
+	                },
+
+	                breakpoints: {
+	                    768: {
+	                        slidesPerView: 1,
+	                        allowTouchMove: true
+	                    }
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'bindEvents',
+	        value: function bindEvents() {}
+	    }]);
+
+	    return Media;
+	}();
+
+	exports.default = Media;
+
+/***/ }),
+
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -18556,4 +18638,5 @@
 
 
 /***/ })
-/******/ ]);
+
+/******/ });
