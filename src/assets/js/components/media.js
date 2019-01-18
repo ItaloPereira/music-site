@@ -1,81 +1,113 @@
 'use strict';
 
 // import data
-// import events from '../data/events';
+import media from '../data/media';
 
 class Media {
 	constructor() {
+        this.$container = $('.media');
+        this.$grid = $('.media-grid', this.$container);
+        this.$button = $('button', this.$container);
+        this.$video = $('.media-grid__line__item.video', this.$container);
 
-        // if (events.length < 3) return false;
+        this.lineCount = 0;
+        this.mediaCount = 0;
+        this.mediaLoaded = 1;
 
-        // this.$container = $('.events');
-
-        // this.createContainer();
-        // this.createSlider();
-        // this.$container.show();
-
-        // this.slider.update();
+        this.createMediaLines();
+        this.bindEvents();
 	}
     
-    createContainer () {
-        this.template = `<div class="page-wrapper">
-                            <h2>PRÓXIMOS EVENTOS</h2>
-                            <div class="box-overflow">
-                                <div class="swiper-events-container">
-                                    <div class="swiper-wrapper">
-                                        ${this.getSlides()}
-                                    </div>
-                                </div>
-                                <div class="swiper-button-prev icon-chevron-down"></div>
-                                <div class="swiper-button-next icon-chevron-down"></div>
-                            </div>
-                         </div>`;
+    createMediaLines () {
+        this.linesTemplate = ''
 
-        this.$container.html(this.template);
+        if ($(window).width() > 768) {
+            for (var i=0; i<3; i++) {
+                this.linesTemplate += ` <div class="media-grid__line ${this.getLineStyle()}">
+                                            ${this.getMedia()}
+                                        </div>`;
+            }
+        } else {
+            for (var i=0; i<1; i++) {
+                this.linesTemplate += ` <div class="media-grid__line ${this.getLineStyle()}">
+                                            ${this.getMedia()}
+                                        </div>`;
+            }
+        }
 
-        this.$swiper = $('.swiper-events-container', this.$container);
+
+        this.$grid.append(this.linesTemplate);
     }
 
-    getSlides () {
-        let slides = '';
+    getLineStyle () {
+        let lineClass = '';
 
-        events.map(event => {
-            slides += `<a href="${event.link}" ${event.link != 'javascript:;' ? 'target="_blank"' : ''} class="swiper-slide">
-                            <div class="outer-div" style="background-image: url(img/${event.image});">
-                                <div class="event-desc">
-                                    <h3 class="event-desc__name">${event.name}</h3>
-                                    <span class="event-desc__date">${event.date}</span>
-                                    <span class="event-desc__city">${event.city}</span>
-                                </div>
-                            </div>
-                       </a>`;
-        });
+        switch(this.lineCount) {
+            case 1:
+                lineClass = 'media-grid__line--type2'
+                break;
 
-        return slides;
+            case 2:
+                lineClass = 'media-grid__line--type3'
+                break;
+
+            default:
+                lineClass = ''
+        }
+
+        if (this.lineCount == 2) this.lineCount = 0;
+        else this.lineCount++;
+
+        return lineClass;
     }
-    
-    createSlider () {
-        this.slider = new Swiper (this.$swiper, {
-            slidesPerView: 3,
-            spaceBetween: 100,
-            allowTouchMove: false,
 
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-
-            breakpoints: {
-                768: {
-                    slidesPerView: 1,
-                    allowTouchMove: true
+    getMedia () {
+        let data = ''
+        media.map((item, index) => {
+            if (index < this.mediaLoaded * 4 && index >= this.mediaLoaded * 4 - 4) {
+                if (item.type == 'image') {
+                    data += `<div class="media-grid__line__item image" data-image="large-${item.name}">
+                                <div class="media-grid__line__item__bgr" style="background-image: url(img/${item.name});"></div>
+                            </div>`
+                } else {
+                    data+= `<div class="media-grid__line__item video" data-videoid="${item.id}">
+                                <div class="media-grid__line__item__bgr" style="background-image: url(https://img.youtube.com/vi/${item.id}/hqdefault.jpg);"></div>
+                                <div class="media-grid__line__item__play icon-play"></div>
+                            </div>`
                 }
             }
-        })
+        });
+        
+        this.mediaLoaded++;
 
+        this.verifyButton();
+
+        return data;
+    }
+
+    verifyButton () {
+        if (this.mediaLoaded * 4 >= media.length) this.$button.hide();
     }
 
 	bindEvents () {
+        const that = this;
+
+        $('body').on('click', '.media-grid__line__item', function () {
+            const $this = $(this);
+            if ($this.hasClass('video')) {
+                App.modal.open('video', $this.data('videoid'));
+            } else {
+                App.modal.open('image', $this.data('image'));
+            }
+        });
+
+        this.$button.on('click', function() {
+            that.$container.addClass('-loading');
+            setTimeout(() => {
+                that.createMediaLines();
+                that.$container.removeClass('-loading');
+            }, 800);
+        });
     }
 }
 

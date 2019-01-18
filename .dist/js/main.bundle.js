@@ -40,45 +40,63 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
+/******/ ([
+/* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	// Sass
 	__webpack_require__(1);
 
 	// JS
-	__webpack_require__(17);
+	__webpack_require__(19);
 
 
 /***/ }),
-
-/***/ 1:
+/* 1 */
 /***/ (function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }),
-
-/***/ 17:
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _jquery = __webpack_require__(18);
+	var _jquery = __webpack_require__(20);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _events = __webpack_require__(19);
+	var _modal = __webpack_require__(21);
+
+	var _modal2 = _interopRequireDefault(_modal);
+
+	var _events = __webpack_require__(22);
 
 	var _events2 = _interopRequireDefault(_events);
 
-	var _media = __webpack_require__(21);
+	var _media = __webpack_require__(24);
 
 	var _media2 = _interopRequireDefault(_media);
 
-	var _swiper = __webpack_require__(29);
+	var _swiper = __webpack_require__(26);
 
 	var _swiper2 = _interopRequireDefault(_swiper);
 
@@ -93,6 +111,7 @@
 
 	window.App = {
 		init: function init() {
+			this.modal = new _modal2.default();
 			this.events = new _events2.default();
 			this.media = new _media2.default();
 		}
@@ -101,8 +120,7 @@
 	App.init();
 
 /***/ }),
-
-/***/ 18:
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10472,8 +10490,117 @@
 
 
 /***/ }),
+/* 21 */
+/***/ (function(module, exports) {
 
-/***/ 19:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Modal = function () {
+	    function Modal() {
+	        _classCallCheck(this, Modal);
+
+	        this.$body = $('body');
+	        this.$modal = $('.modal');
+	        this.$wrapper = $('.modal__wrapper', this.$modal);
+	        this.$close = $('.modal__wrapper__close', this.$modal);
+	        this.$image = $('.modal__wrapper__image', this.$modal);
+
+	        this.player;
+
+	        this.bindEvents();
+	    }
+
+	    _createClass(Modal, [{
+	        key: 'open',
+	        value: function open(type, data) {
+	            this.$body.addClass('modal-active');
+	            this.verifyModalType(type, data);
+	        }
+	    }, {
+	        key: 'verifyModalType',
+	        value: function verifyModalType(type, data) {
+	            if (type == 'video') {
+	                this.$image.hide();
+	                $('#player').show();
+	                this.loadVideo(data);
+	            } else {
+	                $('#player').hide();
+	                this.$image.show();
+	                this.loadImage(data);
+	            }
+	        }
+	    }, {
+	        key: 'close',
+	        value: function close() {
+	            this.$body.removeClass('modal-active');
+
+	            if (this.player) this.player.stopVideo();
+	        }
+	    }, {
+	        key: 'loadVideo',
+	        value: function loadVideo(id) {
+	            var _this = this;
+
+	            if (this.player) {
+	                this.player.loadVideoById(id);
+	            } else {
+	                var tag = document.createElement('script');
+	                tag.src = "https://www.youtube.com/player_api";
+	                var firstScriptTag = document.getElementsByTagName('script')[0];
+	                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	                window.onYouTubePlayerAPIReady = function () {
+	                    _this.player = new YT.Player('player', {
+	                        height: '506',
+	                        width: '900',
+	                        videoId: id,
+	                        playerVars: {
+	                            autoplay: 1,
+	                            rel: 0,
+	                            color: 'white'
+	                        },
+	                        events: {}
+	                    });
+	                };
+	            }
+	        }
+	    }, {
+	        key: 'loadImage',
+	        value: function loadImage(image) {
+	            this.$image.css('background-image', 'url(img/' + image + ')');
+	        }
+	    }, {
+	        key: 'bindEvents',
+	        value: function bindEvents() {
+	            var that = this;
+
+	            $('body').on('click', '.modal__wrapper__close', function () {
+	                that.close();
+	            });
+
+	            this.$modal.on('click', function (e) {
+	                if (!e.target.closest('.modal__wrapper')) {
+	                    that.close();
+	                }
+	            });
+	        }
+	    }]);
+
+	    return Modal;
+	}();
+
+	exports.default = Modal;
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10487,7 +10614,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _events = __webpack_require__(20);
+	var _events = __webpack_require__(23);
 
 	var _events2 = _interopRequireDefault(_events);
 
@@ -10562,8 +10689,7 @@
 	exports.default = Events;
 
 /***/ }),
-
-/***/ 20:
+/* 23 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10594,83 +10720,133 @@
 	exports.default = Events;
 
 /***/ }),
-
-/***/ 21:
-/***/ (function(module, exports) {
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	// import data
-	// import events from '../data/events';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.default = undefined;
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _media = __webpack_require__(25);
+
+	var _media2 = _interopRequireDefault(_media);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	var Media = function () {
 	    function Media() {
-
-	        // if (events.length < 3) return false;
-
-	        // this.$container = $('.events');
-
-	        // this.createContainer();
-	        // this.createSlider();
-	        // this.$container.show();
-
-	        // this.slider.update();
-
 	        _classCallCheck(this, Media);
+
+	        this.$container = $('.media');
+	        this.$grid = $('.media-grid', this.$container);
+	        this.$button = $('button', this.$container);
+	        this.$video = $('.media-grid__line__item.video', this.$container);
+
+	        this.lineCount = 0;
+	        this.mediaCount = 0;
+	        this.mediaLoaded = 1;
+
+	        this.createMediaLines();
+	        this.bindEvents();
 	    }
 
 	    _createClass(Media, [{
-	        key: 'createContainer',
-	        value: function createContainer() {
-	            this.template = '<div class="page-wrapper">\n                            <h2>PR\xD3XIMOS EVENTOS</h2>\n                            <div class="box-overflow">\n                                <div class="swiper-events-container">\n                                    <div class="swiper-wrapper">\n                                        ' + this.getSlides() + '\n                                    </div>\n                                </div>\n                                <div class="swiper-button-prev icon-chevron-down"></div>\n                                <div class="swiper-button-next icon-chevron-down"></div>\n                            </div>\n                         </div>';
+	        key: 'createMediaLines',
+	        value: function createMediaLines() {
+	            this.linesTemplate = '';
 
-	            this.$container.html(this.template);
+	            if ($(window).width() > 768) {
+	                for (var i = 0; i < 3; i++) {
+	                    this.linesTemplate += ' <div class="media-grid__line ' + this.getLineStyle() + '">\n                                            ' + this.getMedia() + '\n                                        </div>';
+	                }
+	            } else {
+	                for (var i = 0; i < 1; i++) {
+	                    this.linesTemplate += ' <div class="media-grid__line ' + this.getLineStyle() + '">\n                                            ' + this.getMedia() + '\n                                        </div>';
+	                }
+	            }
 
-	            this.$swiper = $('.swiper-events-container', this.$container);
+	            this.$grid.append(this.linesTemplate);
 	        }
 	    }, {
-	        key: 'getSlides',
-	        value: function getSlides() {
-	            var slides = '';
+	        key: 'getLineStyle',
+	        value: function getLineStyle() {
+	            var lineClass = '';
 
-	            events.map(function (event) {
-	                slides += '<a href="' + event.link + '" ' + (event.link != 'javascript:;' ? 'target="_blank"' : '') + ' class="swiper-slide">\n                            <div class="outer-div" style="background-image: url(img/' + event.image + ');">\n                                <div class="event-desc">\n                                    <h3 class="event-desc__name">' + event.name + '</h3>\n                                    <span class="event-desc__date">' + event.date + '</span>\n                                    <span class="event-desc__city">' + event.city + '</span>\n                                </div>\n                            </div>\n                       </a>';
-	            });
+	            switch (this.lineCount) {
+	                case 1:
+	                    lineClass = 'media-grid__line--type2';
+	                    break;
 
-	            return slides;
+	                case 2:
+	                    lineClass = 'media-grid__line--type3';
+	                    break;
+
+	                default:
+	                    lineClass = '';
+	            }
+
+	            if (this.lineCount == 2) this.lineCount = 0;else this.lineCount++;
+
+	            return lineClass;
 	        }
 	    }, {
-	        key: 'createSlider',
-	        value: function createSlider() {
-	            this.slider = new Swiper(this.$swiper, {
-	                slidesPerView: 3,
-	                spaceBetween: 100,
-	                allowTouchMove: false,
+	        key: 'getMedia',
+	        value: function getMedia() {
+	            var _this = this;
 
-	                navigation: {
-	                    nextEl: '.swiper-button-next',
-	                    prevEl: '.swiper-button-prev'
-	                },
-
-	                breakpoints: {
-	                    768: {
-	                        slidesPerView: 1,
-	                        allowTouchMove: true
+	            var data = '';
+	            _media2.default.map(function (item, index) {
+	                if (index < _this.mediaLoaded * 4 && index >= _this.mediaLoaded * 4 - 4) {
+	                    if (item.type == 'image') {
+	                        data += '<div class="media-grid__line__item image" data-image="large-' + item.name + '">\n                                <div class="media-grid__line__item__bgr" style="background-image: url(img/' + item.name + ');"></div>\n                            </div>';
+	                    } else {
+	                        data += '<div class="media-grid__line__item video" data-videoid="' + item.id + '">\n                                <div class="media-grid__line__item__bgr" style="background-image: url(https://img.youtube.com/vi/' + item.id + '/hqdefault.jpg);"></div>\n                                <div class="media-grid__line__item__play icon-play"></div>\n                            </div>';
 	                    }
 	                }
 	            });
+
+	            this.mediaLoaded++;
+
+	            this.verifyButton();
+
+	            return data;
+	        }
+	    }, {
+	        key: 'verifyButton',
+	        value: function verifyButton() {
+	            if (this.mediaLoaded * 4 >= _media2.default.length) this.$button.hide();
 	        }
 	    }, {
 	        key: 'bindEvents',
-	        value: function bindEvents() {}
+	        value: function bindEvents() {
+	            var that = this;
+
+	            $('body').on('click', '.media-grid__line__item', function () {
+	                var $this = $(this);
+	                if ($this.hasClass('video')) {
+	                    App.modal.open('video', $this.data('videoid'));
+	                } else {
+	                    App.modal.open('image', $this.data('image'));
+	                }
+	            });
+
+	            this.$button.on('click', function () {
+	                that.$container.addClass('-loading');
+	                setTimeout(function () {
+	                    that.createMediaLines();
+	                    that.$container.removeClass('-loading');
+	                }, 800);
+	            });
+	        }
 	    }]);
 
 	    return Media;
@@ -10679,8 +10855,77 @@
 	exports.default = Media;
 
 /***/ }),
+/* 25 */
+/***/ (function(module, exports) {
 
-/***/ 29:
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var Media = [{
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'video',
+	    id: 'IsJ3F2JWmeE'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'video',
+	    id: '60o1g1E2GBs'
+	}, {
+	    type: 'video',
+	    id: 'jK2k1P56Cno'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}, {
+	    type: 'image',
+	    name: 'media1.jpg'
+	}];
+
+	exports.default = Media;
+
+/***/ }),
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
@@ -18638,5 +18883,4 @@
 
 
 /***/ })
-
-/******/ });
+/******/ ]);
