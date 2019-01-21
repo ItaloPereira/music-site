@@ -7,7 +7,7 @@ class Events {
 	constructor() {
         if (events.length < 3) return false;
 
-        this.$container = $('.events');
+        this.$container = $('#events');
 
         this.createContainer();
         this.createSlider();

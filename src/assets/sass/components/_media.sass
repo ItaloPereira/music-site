@@ -1,4 +1,4 @@
-.media
+#media
     .media-grid
         &__line
             display: flex
@@ -16,9 +16,9 @@
 
                 @include sm-screen
                     display: block
-                    height: 55vh
+                    height: 400px
 
-                &__bgr
+                &__bgr  
                     background-repeat: no-repeat
                     background-position: center
                     background-size: cover
@@ -37,6 +37,9 @@
                 &:hover
                     .media-grid__line__item__bgr
                         transform: scale(1.1)
+
+                        @include sm-screen
+                            transform: scale(1)
 
                 &.video:after
                     content: ''
@@ -77,6 +80,9 @@
         position: relative
         margin: 75px auto 0
 
+        @include sm-screen
+            margin: 50px auto 0
+
     &.-loading button
         &:after
             content: ''
@@ -109,6 +115,6 @@
     100% 
         transform: translate3d(-50%, -50%, 0)  rotate(360deg)
 
-body .media .media-grid .media-grid__line .media-grid__line__item
+body #media .media-grid .media-grid__line .media-grid__line__item
     @include sm-screen
         width: 100%

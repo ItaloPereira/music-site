@@ -5,37 +5,38 @@ import media from '../data/media';
 
 class Media {
 	constructor() {
-        this.$container = $('.media');
+        this.$container = $('#media');
         this.$grid = $('.media-grid', this.$container);
         this.$button = $('button', this.$container);
         this.$video = $('.media-grid__line__item.video', this.$container);
 
         this.lineCount = 0;
         this.mediaCount = 0;
-        this.mediaLoaded = 1;
+        this.linesLoaded = 0;
 
-        this.createMediaLines();
+        this.loadMediaLines();
         this.bindEvents();
-	}
+    }
     
-    createMediaLines () {
+    loadMediaLines () {
         this.linesTemplate = ''
+        let n;
 
         if ($(window).width() > 768) {
-            for (var i=0; i<3; i++) {
-                this.linesTemplate += ` <div class="media-grid__line ${this.getLineStyle()}">
-                                            ${this.getMedia()}
-                                        </div>`;
-            }
+            n = 3;
         } else {
-            for (var i=0; i<1; i++) {
-                this.linesTemplate += ` <div class="media-grid__line ${this.getLineStyle()}">
-                                            ${this.getMedia()}
-                                        </div>`;
-            }
+            n = 1
         }
 
+        for (var i=0; i<n; i++) {
+            this.linesTemplate += ` <div class="media-grid__line ${this.getLineStyle()}">
+                                        ${this.getMedia()}
+                                    </div>`;
 
+            this.linesLoaded++;
+        }
+
+        this.verifyButton();
         this.$grid.append(this.linesTemplate);
     }
 
@@ -64,7 +65,7 @@ class Media {
     getMedia () {
         let data = ''
         media.map((item, index) => {
-            if (index < this.mediaLoaded * 4 && index >= this.mediaLoaded * 4 - 4) {
+            if (index >= this.linesLoaded * 4 && index < this.linesLoaded * 4 + 4) {
                 if (item.type == 'image') {
                     data += `<div class="media-grid__line__item image" data-image="large-${item.name}">
                                 <div class="media-grid__line__item__bgr" style="background-image: url(img/${item.name});"></div>
@@ -78,15 +79,11 @@ class Media {
             }
         });
         
-        this.mediaLoaded++;
-
-        this.verifyButton();
-
         return data;
     }
 
     verifyButton () {
-        if (this.mediaLoaded * 4 >= media.length) this.$button.hide();
+        if (this.linesLoaded * 4 >= media.length) this.$button.hide();
     }
 
 	bindEvents () {
@@ -104,7 +101,7 @@ class Media {
         this.$button.on('click', function() {
             that.$container.addClass('-loading');
             setTimeout(() => {
-                that.createMediaLines();
+                that.loadMediaLines();
                 that.$container.removeClass('-loading');
             }, 800);
         });

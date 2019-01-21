@@ -3,7 +3,7 @@
 class Modal {
     constructor() {
         this.$body = $('body');
-        this.$modal = $('.modal');
+        this.$modal = $('#modal');
         this.$wrapper = $('.modal__wrapper', this.$modal);
         this.$close = $('.modal__wrapper__close', this.$modal);
         this.$image = $('.modal__wrapper__image', this.$modal);
@@ -49,7 +49,7 @@ class Modal {
             window.onYouTubePlayerAPIReady = () => {
                 this.player = new YT.Player('player', {
                     height: '506',
-                    width: '900',
+                    width: '100%',
                     videoId: id,
                     playerVars: {
                         autoplay: 1,

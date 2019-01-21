@@ -84,19 +84,23 @@
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _modal = __webpack_require__(21);
+	var _menu = __webpack_require__(21);
+
+	var _menu2 = _interopRequireDefault(_menu);
+
+	var _modal = __webpack_require__(22);
 
 	var _modal2 = _interopRequireDefault(_modal);
 
-	var _events = __webpack_require__(22);
+	var _events = __webpack_require__(23);
 
 	var _events2 = _interopRequireDefault(_events);
 
-	var _media = __webpack_require__(24);
+	var _media = __webpack_require__(25);
 
 	var _media2 = _interopRequireDefault(_media);
 
-	var _swiper = __webpack_require__(26);
+	var _swiper = __webpack_require__(27);
 
 	var _swiper2 = _interopRequireDefault(_swiper);
 
@@ -111,6 +115,7 @@
 
 	window.App = {
 		init: function init() {
+			this.modal = new _menu2.default();
 			this.modal = new _modal2.default();
 			this.events = new _events2.default();
 			this.media = new _media2.default();
@@ -10503,12 +10508,78 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+	var Menu = function () {
+	    function Menu() {
+	        _classCallCheck(this, Menu);
+
+	        this.$menu = $('#menu');
+	        this.$open = $('.nav__btn-menu');
+	        this.$close = $('.menu__nav__btn-menu', this.$menu);
+	        this.$item = $('a', this.menu);
+
+	        this.isAnimating = false;
+
+	        this.bindEvents();
+	    }
+
+	    _createClass(Menu, [{
+	        key: 'bindEvents',
+	        value: function bindEvents() {
+	            var that = this;
+
+	            this.$open.on('click', function () {
+	                $('body').addClass('menu-active');
+	            });
+
+	            this.$close.on('click', function () {
+	                $('body').removeClass('menu-active');
+	            });
+
+	            this.$item.on('click', function (event) {
+	                if (that.isAnimating) {
+	                    return false;
+	                } else {
+	                    event.preventDefault();
+	                    var hash = this.hash;
+	                    var time = 800;
+	                    that.isAnimating = true;
+
+	                    $('html, body').animate({
+	                        scrollTop: $(hash).offset().top
+	                    }, time, function () {
+	                        window.location.hash = hash;
+	                        that.isAnimating = false;
+	                    });
+	                }
+	            });
+	        }
+	    }]);
+
+	    return Menu;
+	}();
+
+	exports.default = Menu;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 	var Modal = function () {
 	    function Modal() {
 	        _classCallCheck(this, Modal);
 
 	        this.$body = $('body');
-	        this.$modal = $('.modal');
+	        this.$modal = $('#modal');
 	        this.$wrapper = $('.modal__wrapper', this.$modal);
 	        this.$close = $('.modal__wrapper__close', this.$modal);
 	        this.$image = $('.modal__wrapper__image', this.$modal);
@@ -10560,7 +10631,7 @@
 	                window.onYouTubePlayerAPIReady = function () {
 	                    _this.player = new YT.Player('player', {
 	                        height: '506',
-	                        width: '900',
+	                        width: '100%',
 	                        videoId: id,
 	                        playerVars: {
 	                            autoplay: 1,
@@ -10600,7 +10671,7 @@
 	exports.default = Modal;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10614,7 +10685,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _events = __webpack_require__(23);
+	var _events = __webpack_require__(24);
 
 	var _events2 = _interopRequireDefault(_events);
 
@@ -10628,7 +10699,7 @@
 
 	        if (_events2.default.length < 3) return false;
 
-	        this.$container = $('.events');
+	        this.$container = $('#events');
 
 	        this.createContainer();
 	        this.createSlider();
@@ -10689,7 +10760,7 @@
 	exports.default = Events;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10720,7 +10791,7 @@
 	exports.default = Events;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10734,7 +10805,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _media = __webpack_require__(25);
+	var _media = __webpack_require__(26);
 
 	var _media2 = _interopRequireDefault(_media);
 
@@ -10746,34 +10817,38 @@
 	    function Media() {
 	        _classCallCheck(this, Media);
 
-	        this.$container = $('.media');
+	        this.$container = $('#media');
 	        this.$grid = $('.media-grid', this.$container);
 	        this.$button = $('button', this.$container);
 	        this.$video = $('.media-grid__line__item.video', this.$container);
 
 	        this.lineCount = 0;
 	        this.mediaCount = 0;
-	        this.mediaLoaded = 1;
+	        this.linesLoaded = 0;
 
-	        this.createMediaLines();
+	        this.loadMediaLines();
 	        this.bindEvents();
 	    }
 
 	    _createClass(Media, [{
-	        key: 'createMediaLines',
-	        value: function createMediaLines() {
+	        key: 'loadMediaLines',
+	        value: function loadMediaLines() {
 	            this.linesTemplate = '';
+	            var n = void 0;
 
 	            if ($(window).width() > 768) {
-	                for (var i = 0; i < 3; i++) {
-	                    this.linesTemplate += ' <div class="media-grid__line ' + this.getLineStyle() + '">\n                                            ' + this.getMedia() + '\n                                        </div>';
-	                }
+	                n = 3;
 	            } else {
-	                for (var i = 0; i < 1; i++) {
-	                    this.linesTemplate += ' <div class="media-grid__line ' + this.getLineStyle() + '">\n                                            ' + this.getMedia() + '\n                                        </div>';
-	                }
+	                n = 1;
 	            }
 
+	            for (var i = 0; i < n; i++) {
+	                this.linesTemplate += ' <div class="media-grid__line ' + this.getLineStyle() + '">\n                                        ' + this.getMedia() + '\n                                    </div>';
+
+	                this.linesLoaded++;
+	            }
+
+	            this.verifyButton();
 	            this.$grid.append(this.linesTemplate);
 	        }
 	    }, {
@@ -10805,7 +10880,7 @@
 
 	            var data = '';
 	            _media2.default.map(function (item, index) {
-	                if (index < _this.mediaLoaded * 4 && index >= _this.mediaLoaded * 4 - 4) {
+	                if (index >= _this.linesLoaded * 4 && index < _this.linesLoaded * 4 + 4) {
 	                    if (item.type == 'image') {
 	                        data += '<div class="media-grid__line__item image" data-image="large-' + item.name + '">\n                                <div class="media-grid__line__item__bgr" style="background-image: url(img/' + item.name + ');"></div>\n                            </div>';
 	                    } else {
@@ -10814,16 +10889,12 @@
 	                }
 	            });
 
-	            this.mediaLoaded++;
-
-	            this.verifyButton();
-
 	            return data;
 	        }
 	    }, {
 	        key: 'verifyButton',
 	        value: function verifyButton() {
-	            if (this.mediaLoaded * 4 >= _media2.default.length) this.$button.hide();
+	            if (this.linesLoaded * 4 >= _media2.default.length) this.$button.hide();
 	        }
 	    }, {
 	        key: 'bindEvents',
@@ -10842,7 +10913,7 @@
 	            this.$button.on('click', function () {
 	                that.$container.addClass('-loading');
 	                setTimeout(function () {
-	                    that.createMediaLines();
+	                    that.loadMediaLines();
 	                    that.$container.removeClass('-loading');
 	                }, 800);
 	            });
@@ -10855,7 +10926,7 @@
 	exports.default = Media;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10925,7 +10996,7 @@
 	exports.default = Media;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**
