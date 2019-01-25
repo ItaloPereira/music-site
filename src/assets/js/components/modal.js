@@ -10,6 +10,7 @@ class Modal {
 
         this.player;
 
+        this.loadVideo();
         this.bindEvents();
     }
 
@@ -22,7 +23,7 @@ class Modal {
         if (type == 'video') {
             this.$image.hide();
             $('#player').show();
-            this.loadVideo(data);
+            this.startVideo(data);
         } else {
             $('#player').hide();
             this.$image.show();
@@ -36,31 +37,29 @@ class Modal {
         if (this.player) this.player.stopVideo();
     }
 
-    loadVideo(id) {
+    loadVideo() {
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        if (this.player) {
-            this.player.loadVideoById(id);
-        } else {
-            var tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/player_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            window.onYouTubePlayerAPIReady = () => {
-                this.player = new YT.Player('player', {
-                    height: '506',
-                    width: '100%',
-                    videoId: id,
-                    playerVars: {
-                        autoplay: 1,
-                        rel: 0,
-                        color: 'white'
-                    },
-                    events: {
-                    }
-                });
-            }
+        window.onYouTubePlayerAPIReady = () => {
+            this.player = new YT.Player('player', {
+                height: '506',
+                width: '100%',
+                videoId: 'IsJ3F2JWmeE',
+                playerVars: {
+                    rel: 0,
+                    color: 'white'
+                },
+                events: {
+                }
+            });
         }
+    }
+
+    startVideo(id) {
+        this.player.loadVideoById(id);
     }
 
     loadImage(image) {

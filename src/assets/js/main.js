@@ -16,6 +16,22 @@ window.App = {
 		this.modal = new Modal();
 		this.events = new Events();
 		this.media = new Media();
+
+		$(window).on('scroll', () => {
+			this.verifyNavAnimation();
+		});
+	},
+	verifyNavAnimation() {
+		let top;
+
+		if ($(window).width() > 768) top = 800
+		else top = 600
+
+		if ($(window).scrollTop() > top) {
+			$('nav').addClass('dark-bgr');
+		} else {
+			$('nav').removeClass('dark-bgr');
+		}
 	}
 };
 

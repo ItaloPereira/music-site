@@ -632,7 +632,7 @@ a {
   opacity: 0;
   visibility: hidden;
   transition: .3s; }
-  #modal__wrapper {
+  #modal .modal__wrapper {
     background-color: #202020;
     width: 900px;
     height: 546.25px;
@@ -640,17 +640,17 @@ a {
     position: relative;
     transform: scale(0.8);
     transition: .3s; }
-    #modal__wrapper__close {
+    #modal .modal__wrapper__close {
       position: absolute;
       top: 0;
       right: 0;
       font-size: 30px;
       padding: 5px;
       cursor: pointer; }
-    #modal__wrapper #player {
+    #modal .modal__wrapper #player {
       position: absolute;
       bottom: 0; }
-    #modal__wrapper__image {
+    #modal .modal__wrapper__image {
       position: absolute;
       bottom: 0;
       width: 100%;
@@ -682,13 +682,13 @@ body.modal-active {
     z-index: 300;
     padding: 0;
     width: 100vw;
-    transition: .5s; }
-    #menu__nav {
+    transition: .3s; }
+    #menu .menu__nav {
       height: 70px;
       border-bottom: 1px solid #333; }
-      #menu__nav .page-wrapper {
+      #menu .menu__nav .page-wrapper {
         position: relative; }
-        #menu__nav .page-wrapper .menu__nav__btn-menu {
+        #menu .menu__nav .page-wrapper .menu__nav__btn-menu {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
@@ -701,16 +701,16 @@ body.modal-active {
               flex-direction: column;
           -ms-flex-pack: justify;
               justify-content: space-between; }
-          #menu__nav .page-wrapper .menu__nav__btn-menu .btn-line {
+          #menu .menu__nav .page-wrapper .menu__nav__btn-menu .btn-line {
             width: 100%;
             height: 0px;
             border: 2px solid #fff;
             border-radius: 2px; }
-          #menu__nav .page-wrapper .menu__nav__btn-menu .btn-line-1 {
+          #menu .menu__nav .page-wrapper .menu__nav__btn-menu .btn-line-1 {
             transform: translateY(8px) rotate(45deg); }
-          #menu__nav .page-wrapper .menu__nav__btn-menu .btn-line-2 {
+          #menu .menu__nav .page-wrapper .menu__nav__btn-menu .btn-line-2 {
             transform: translateY(-8px) rotate(-45deg); }
-    #menu__body {
+    #menu .menu__body {
       margin-top: 20px; }
     #menu a {
       display: block;
@@ -745,8 +745,7 @@ nav {
   z-index: 100; }
   @media (max-width: 768px) {
     nav {
-      height: 70px;
-      background-color: rgba(32, 32, 32, 0.3); } }
+      height: 70px; } }
   nav .page-wrapper {
     display: -ms-flexbox;
     display: flex;
@@ -784,6 +783,8 @@ nav {
         height: 0px;
         border: 2px solid #fff;
         border-radius: 2px; }
+  nav.dark-bgr {
+    background-color: rgba(32, 32, 32, 0.6); }
 
 header {
   height: 110vh;

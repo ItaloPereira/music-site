@@ -115,10 +115,27 @@
 
 	window.App = {
 		init: function init() {
+			var _this = this;
+
 			this.modal = new _menu2.default();
 			this.modal = new _modal2.default();
 			this.events = new _events2.default();
 			this.media = new _media2.default();
+
+			(0, _jquery2.default)(window).on('scroll', function () {
+				_this.verifyNavAnimation();
+			});
+		},
+		verifyNavAnimation: function verifyNavAnimation() {
+			var top = void 0;
+
+			if ((0, _jquery2.default)(window).width() > 768) top = 800;else top = 600;
+
+			if ((0, _jquery2.default)(window).scrollTop() > top) {
+				(0, _jquery2.default)('nav').addClass('dark-bgr');
+			} else {
+				(0, _jquery2.default)('nav').removeClass('dark-bgr');
+			}
 		}
 	};
 
@@ -10513,9 +10530,11 @@
 	        _classCallCheck(this, Menu);
 
 	        this.$menu = $('#menu');
+	        this.$body = $('body');
 	        this.$open = $('.nav__btn-menu');
 	        this.$close = $('.menu__nav__btn-menu', this.$menu);
-	        this.$item = $('a', this.menu);
+	        this.$item = $('.nav__menu a');
+	        this.$itemMob = $('.menu__body a');
 
 	        this.isAnimating = false;
 
@@ -10528,11 +10547,30 @@
 	            var that = this;
 
 	            this.$open.on('click', function () {
-	                $('body').addClass('menu-active');
+	                that.$body.addClass('menu-active');
 	            });
 
 	            this.$close.on('click', function () {
-	                $('body').removeClass('menu-active');
+	                that.$body.removeClass('menu-active');
+	            });
+
+	            this.$itemMob.on('click', function (event) {
+	                that.$body.removeClass('menu-active');
+	                if (that.isAnimating) {
+	                    return false;
+	                } else {
+	                    event.preventDefault();
+	                    var hash = this.hash;
+	                    var time = 800;
+	                    that.isAnimating = true;
+
+	                    $('html, body').animate({
+	                        scrollTop: $(hash).offset().top - 50
+	                    }, time, function () {
+	                        that.isAnimating = false;
+	                    });
+	                    window.location.hash = hash;
+	                }
 	            });
 
 	            this.$item.on('click', function (event) {
@@ -10545,11 +10583,11 @@
 	                    that.isAnimating = true;
 
 	                    $('html, body').animate({
-	                        scrollTop: $(hash).offset().top
+	                        scrollTop: $(hash).offset().top - 80
 	                    }, time, function () {
-	                        window.location.hash = hash;
 	                        that.isAnimating = false;
 	                    });
+	                    window.location.hash = hash;
 	                }
 	            });
 	        }
@@ -10586,6 +10624,7 @@
 
 	        this.player;
 
+	        this.loadVideo();
 	        this.bindEvents();
 	    }
 
@@ -10601,7 +10640,7 @@
 	            if (type == 'video') {
 	                this.$image.hide();
 	                $('#player').show();
-	                this.loadVideo(data);
+	                this.startVideo(data);
 	            } else {
 	                $('#player').hide();
 	                this.$image.show();
@@ -10617,31 +10656,31 @@
 	        }
 	    }, {
 	        key: 'loadVideo',
-	        value: function loadVideo(id) {
+	        value: function loadVideo() {
 	            var _this = this;
 
-	            if (this.player) {
-	                this.player.loadVideoById(id);
-	            } else {
-	                var tag = document.createElement('script');
-	                tag.src = "https://www.youtube.com/player_api";
-	                var firstScriptTag = document.getElementsByTagName('script')[0];
-	                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	            var tag = document.createElement('script');
+	            tag.src = "https://www.youtube.com/player_api";
+	            var firstScriptTag = document.getElementsByTagName('script')[0];
+	            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-	                window.onYouTubePlayerAPIReady = function () {
-	                    _this.player = new YT.Player('player', {
-	                        height: '506',
-	                        width: '100%',
-	                        videoId: id,
-	                        playerVars: {
-	                            autoplay: 1,
-	                            rel: 0,
-	                            color: 'white'
-	                        },
-	                        events: {}
-	                    });
-	                };
-	            }
+	            window.onYouTubePlayerAPIReady = function () {
+	                _this.player = new YT.Player('player', {
+	                    height: '506',
+	                    width: '100%',
+	                    videoId: 'IsJ3F2JWmeE',
+	                    playerVars: {
+	                        rel: 0,
+	                        color: 'white'
+	                    },
+	                    events: {}
+	                });
+	            };
+	        }
+	    }, {
+	        key: 'startVideo',
+	        value: function startVideo(id) {
+	            this.player.loadVideoById(id);
 	        }
 	    }, {
 	        key: 'loadImage',
