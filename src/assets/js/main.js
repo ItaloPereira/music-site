@@ -12,7 +12,7 @@ window.Swiper = Swiper;
 
 window.App = {
 	init() {
-		this.modal = new Menu();
+		this.menu = new Menu();
 		this.modal = new Modal();
 		this.events = new Events();
 		this.media = new Media();

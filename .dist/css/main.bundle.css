@@ -660,7 +660,9 @@ a {
       background-position: center; }
 
 body.modal-active {
-  overflow: hidden; }
+  overflow-y: scroll;
+  left: 0;
+  right: 0; }
   body.modal-active #modal {
     opacity: 1;
     visibility: visible; }
@@ -717,8 +719,12 @@ body.modal-active {
       padding: 12px 0;
       font-size: 22px; } }
 
-body.menu-active #menu {
-  left: 0; }
+body.menu-active {
+  overflow-y: scroll;
+  left: 0;
+  right: 0; }
+  body.menu-active #menu {
+    left: 0; }
 
 button {
   padding: 0 57px;

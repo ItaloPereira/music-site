@@ -117,7 +117,7 @@
 		init: function init() {
 			var _this = this;
 
-			this.modal = new _menu2.default();
+			this.menu = new _menu2.default();
 			this.modal = new _modal2.default();
 			this.events = new _events2.default();
 			this.media = new _media2.default();
@@ -10547,14 +10547,23 @@
 	            var that = this;
 
 	            this.$open.on('click', function () {
+	                var _this = this;
+
 	                that.$body.addClass('menu-active');
+	                that.top = window.scrollY || window.pageYOffset;
+	                setTimeout(function () {
+	                    that.$body.css('position', 'fixed').css('top', '-' + _this.top + 'px');
+	                }, 350);
 	            });
 
 	            this.$close.on('click', function () {
 	                that.$body.removeClass('menu-active');
+	                that.$body.css('position', 'relative').css('top', 0);
+	                window.scrollTo(0, that.top);
 	            });
 
 	            this.$itemMob.on('click', function (event) {
+	                that.$body.css('position', 'relative').css('top', 0);
 	                that.$body.removeClass('menu-active');
 	                if (that.isAnimating) {
 	                    return false;
@@ -10622,6 +10631,8 @@
 	        this.$close = $('.modal__wrapper__close', this.$modal);
 	        this.$image = $('.modal__wrapper__image', this.$modal);
 
+	        this.top = 0;
+
 	        this.player;
 
 	        this.loadVideo();
@@ -10631,8 +10642,10 @@
 	    _createClass(Modal, [{
 	        key: 'open',
 	        value: function open(type, data) {
+	            this.top = window.scrollY || window.pageYOffset;
 	            this.$body.addClass('modal-active');
 	            this.verifyModalType(type, data);
+	            this.$body.css('position', 'fixed').css('top', '-' + this.top + 'px');
 	        }
 	    }, {
 	        key: 'verifyModalType',
@@ -10651,8 +10664,9 @@
 	        key: 'close',
 	        value: function close() {
 	            this.$body.removeClass('modal-active');
-
 	            if (this.player) this.player.stopVideo();
+	            this.$body.css('position', 'relative').css('top', 0);
+	            window.scrollTo(0, this.top);
 	        }
 	    }, {
 	        key: 'loadVideo',

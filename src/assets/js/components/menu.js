@@ -19,13 +19,20 @@ class Menu {
 
         this.$open.on('click', function() {
             that.$body.addClass('menu-active');
+            that.top = window.scrollY || window.pageYOffset;
+            setTimeout(() => {
+                that.$body.css('position', 'fixed').css('top', `-${this.top}px`);
+            }, 350);
         });
 
         this.$close.on('click', function() {
             that.$body.removeClass('menu-active');
+            that.$body.css('position', 'relative').css('top', 0);
+            window.scrollTo(0, that.top);
         });
 
         this.$itemMob.on('click', function(event) {
+            that.$body.css('position', 'relative').css('top', 0);
             that.$body.removeClass('menu-active');
             if (that.isAnimating) {
                 return false;

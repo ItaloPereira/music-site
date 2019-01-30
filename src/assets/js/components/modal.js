@@ -8,6 +8,8 @@ class Modal {
         this.$close = $('.modal__wrapper__close', this.$modal);
         this.$image = $('.modal__wrapper__image', this.$modal);
 
+        this.top = 0;
+
         this.player;
 
         this.loadVideo();
@@ -15,8 +17,10 @@ class Modal {
     }
 
     open(type, data) {
+        this.top = window.scrollY || window.pageYOffset;
         this.$body.addClass('modal-active');
         this.verifyModalType(type, data);
+        this.$body.css('position', 'fixed').css('top', `-${this.top}px`);
     }
 
     verifyModalType(type, data) {
@@ -33,8 +37,9 @@ class Modal {
 
     close() {
         this.$body.removeClass('modal-active');
-
         if (this.player) this.player.stopVideo();
+        this.$body.css('position', 'relative').css('top', 0);
+        window.scrollTo(0, this.top);
     }
 
     loadVideo() {
