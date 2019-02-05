@@ -58,7 +58,7 @@ module.exports = {
 				loader: ExtractTextPlugin.extract('css!postcss!sass')
 			},
 			{
-				test: /\.(gif|png|jpg|ico)(\?[a-z0-9]+)?$/,
+				test: /\.(gif|png|jpg|ico|jpeg)(\?[a-z0-9]+)?$/,
 				loader: 'file-loader?name=../img/[name].[ext]'
 			},
 			{

@@ -48,7 +48,7 @@
 	__webpack_require__(1);
 
 	// JS
-	__webpack_require__(19);
+	__webpack_require__(21);
 
 
 /***/ }),
@@ -75,32 +75,34 @@
 /* 16 */,
 /* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */,
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _jquery = __webpack_require__(20);
+	var _jquery = __webpack_require__(22);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _menu = __webpack_require__(21);
+	var _menu = __webpack_require__(23);
 
 	var _menu2 = _interopRequireDefault(_menu);
 
-	var _modal = __webpack_require__(22);
+	var _modal = __webpack_require__(24);
 
 	var _modal2 = _interopRequireDefault(_modal);
 
-	var _events = __webpack_require__(23);
+	var _events = __webpack_require__(25);
 
 	var _events2 = _interopRequireDefault(_events);
 
-	var _media = __webpack_require__(25);
+	var _media = __webpack_require__(27);
 
 	var _media2 = _interopRequireDefault(_media);
 
-	var _swiper = __webpack_require__(27);
+	var _swiper = __webpack_require__(29);
 
 	var _swiper2 = _interopRequireDefault(_swiper);
 
@@ -142,7 +144,7 @@
 	App.init();
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10512,7 +10514,7 @@
 
 
 /***/ }),
-/* 21 */
+/* 23 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10608,7 +10610,7 @@
 	exports.default = Menu;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10724,7 +10726,7 @@
 	exports.default = Modal;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10738,7 +10740,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _events = __webpack_require__(24);
+	var _events = __webpack_require__(26);
 
 	var _events2 = _interopRequireDefault(_events);
 
@@ -10813,7 +10815,7 @@
 	exports.default = Events;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -10822,29 +10824,41 @@
 	    value: true
 	});
 	var Events = [{
-	    name: 'Show da Nabrisa',
-	    date: '08/02',
-	    city: 'PELOTAS',
-	    image: 'flyer1.jpg',
-	    link: 'https://www.facebook.com/events/607752266328167/'
-	}, {
 	    name: 'B-Day Ferraz',
 	    date: '16/02',
 	    city: 'SÃO LOURENÇO DO SUL',
-	    image: 'flyer2.jpg',
+	    image: 'flyer1.jpg',
 	    link: 'javascript:;'
 	}, {
 	    name: 'HN Funk',
 	    date: '22/02',
 	    city: 'PELOTAS',
-	    image: 'flyer3.jpg',
+	    image: 'flyer2.jpg',
 	    link: 'https://www.facebook.com/events/210978669851748/'
+	}, {
+	    name: 'Fp do Trem Bala',
+	    date: '09/03',
+	    city: 'PELOTAS',
+	    image: 'flyer3.jpeg',
+	    link: 'https://www.facebook.com/events/2146954125521997/'
+	}, {
+	    name: 'Show do Mano Brown',
+	    date: '18/04',
+	    city: 'PELOTAS',
+	    image: 'flyer4.jpeg',
+	    link: 'https://www.facebook.com/events/228235331449831/'
+	}, {
+	    name: 'Teckzada',
+	    date: '...',
+	    city: 'Jaguarão',
+	    image: 'flyer5.png',
+	    link: 'javascript:;'
 	}];
 
 	exports.default = Events;
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10858,7 +10872,7 @@
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-	var _media = __webpack_require__(26);
+	var _media = __webpack_require__(28);
 
 	var _media2 = _interopRequireDefault(_media);
 
@@ -10979,7 +10993,7 @@
 	exports.default = Media;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -11049,7 +11063,7 @@
 	exports.default = Media;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	/**

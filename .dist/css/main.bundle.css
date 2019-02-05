@@ -532,7 +532,9 @@ input[type="radio"], input[type="checkbox"] {
 .events-images {
   background-image: url(../img/flyer1.jpg);
   background-image: url(../img/flyer2.jpg);
-  background-image: url(../img/flyer3.jpg); }
+  background-image: url(../img/flyer3.jpeg);
+  background-image: url(../img/flyer4.jpeg);
+  background-image: url(../img/flyer5.png); }
 
 .media-images {
   background-image: url(../img/media1.jpg);
@@ -889,7 +891,8 @@ section {
           transition: .3s; }
           #events .box-overflow .swiper-events-container .swiper-slide .outer-div .event-desc__name {
             font-size: 30px;
-            margin-bottom: 5px; }
+            margin-bottom: 5px;
+            text-align: center; }
           #events .box-overflow .swiper-events-container .swiper-slide .outer-div .event-desc__date {
             font-size: 22px;
             color: #ccc;
