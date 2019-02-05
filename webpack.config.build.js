@@ -43,7 +43,7 @@ module.exports = {
 	},
 	output: {
 		filename: '[name].bundle.js',
-		path: path.resolve(__dirname, './dist/js')
+		path: path.resolve(__dirname, './docs/js')
 	},
 	resolve: {
     alias: {}
