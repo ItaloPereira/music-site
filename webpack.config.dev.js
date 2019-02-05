@@ -18,7 +18,7 @@ var plugins = [
 		host: 'localhost',
 		port: 3000,
 		server: {
-			baseDir: ['./.docs']
+			baseDir: ['./docs']
 		}
 	})
 ];
