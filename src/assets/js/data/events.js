@@ -2,12 +2,6 @@
 
 const Events = [
     {
-        name: 'B-Day Ferraz',
-        date: '16/02',
-        city: 'SÃO LOURENÇO DO SUL',
-        image: 'flyer1.jpg',
-        link: 'javascript:;'
-    }, {
         name: 'HN Funk',
         date: '22/02',
         city: 'PELOTAS',
