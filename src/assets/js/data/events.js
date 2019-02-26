@@ -2,23 +2,31 @@
 
 const Events = [
     {
-        name: 'HN Funk',
-        date: '22/02',
-        city: 'PELOTAS',
-        image: 'flyer1.jpg',
-        link: 'https://www.facebook.com/events/210978669851748/'
-    }, {
         name: 'Fp do Trem Bala',
         date: '09/03',
         city: 'PELOTAS',
-        image: 'flyer2.jpeg',
+        image: 'flyer1.jpeg',
         link: 'https://www.facebook.com/events/2146954125521997/'
+    },
+    //  {
+    //     name: 'Baile da C.A',
+    //     date: '12/04',
+    //     city: 'PELOTAS',
+    //     image: 'flyer2.jpeg',
+    //     link: 'https://www.facebook.com/events/786189115069052/'
+    // }, 
+    {
+        name: 'Baile da Pantera',
+        date: '10/05',
+        city: 'PELOTAS',
+        image: 'flyer2.jpeg',
+        link: 'https://www.facebook.com/events/352073248728148/'
     }, {
         name: 'Show do Mano Brown',
-        date: '18/04',
+        date: '06/06',
         city: 'PELOTAS',
         image: 'flyer3.jpeg',
-        link: 'https://www.facebook.com/events/228235331449831/'
+        link: 'javascript:;'
     }, {
         name: 'Teckzada',
         date: '...',
