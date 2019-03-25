@@ -17,8 +17,8 @@ const Events = [
         name: 'Show Matuê',
         date: '03/05',
         city: 'Pelotas',
-        image: 'flyer4.jpeg',
-        link: 'https:3/www.facebook.com/events/287471012153597/'
+        image: 'flyer3.jpeg',
+        link: 'https://www.facebook.com/events/287471012153597/'
     }, {
         name: 'Teckzada',
         date: '04/05',
