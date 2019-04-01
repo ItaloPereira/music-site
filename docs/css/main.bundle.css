@@ -545,6 +545,9 @@ input[type="radio"], input[type="checkbox"] {
 .favicon {
   background-image: url(../img/favicon.ico); }
 
+.share-image {
+  background-image: url(../img/share-image.jpg); }
+
 @font-face {
   font-family: 'coda';
   src: url(../fonts/coda-regular-webfont.woff2) format("woff2"), url(../fonts/coda-regular-webfont.woff) format("woff");
