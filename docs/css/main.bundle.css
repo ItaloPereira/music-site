@@ -530,12 +530,11 @@ input[type="radio"], input[type="checkbox"] {
           user-select: none; }
 
 .events-images {
-  background-image: url(../img/flyer1.jpeg);
   background-image: url(../img/flyer2.jpg);
   background-image: url(../img/flyer3.jpeg);
   background-image: url(../img/flyer4.png);
   background-image: url(../img/flyer5.jpeg);
-  background-image: url(../img/flyer6.jpeg);
+  background-image: url(../img/flyer6.jpg);
   background-image: url(../img/flyer7.jpeg); }
 
 .media-images {
