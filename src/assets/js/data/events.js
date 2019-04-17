@@ -2,12 +2,6 @@
 
 const Events = [
     {
-        name: 'Baile da C.A',
-        date: '12/04',
-        city: 'PELOTAS',
-        image: 'flyer1.jpeg',
-        link: 'https://www.facebook.com/events/786189115069052/'
-    }, {
         name: 'Show Mc Levin',
         date: '20/04',
         city: 'PELOTAS',
@@ -35,7 +29,7 @@ const Events = [
         name: 'Baile da GR',
         date: '08/06',
         city: 'PELOTAS',
-        image: 'flyer6.jpeg',
+        image: 'flyer6.jpg',
         link: 'javascript:;'
     }, {
         name: 'Show do Mano Brown',
